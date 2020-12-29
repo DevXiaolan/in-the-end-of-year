@@ -1,0 +1,7 @@
+npm run build
+
+docker build -t this-year:201228 .
+
+docker tag this-year:201228 registry.cn-shenzhen.aliyuncs.com/lan_jane/this-year:201228
+
+docker push registry.cn-shenzhen.aliyuncs.com/lan_jane/this-year:201228
