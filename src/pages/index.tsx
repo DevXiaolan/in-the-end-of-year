@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Modal, Row, Tooltip, Typography } from 'antd';
+import { Button, Col, Form, Input, Modal, Row, Typography } from 'antd';
 import { InputProps } from 'antd/lib/input';
 import React, { useRef, useState } from 'react';
 import { useScreenshot } from 'use-screenshot-hook';
@@ -219,7 +219,9 @@ export default () => {
               <Button
                 type="ghost"
                 onClick={() => {
-                  takeScreenshot()
+                  takeScreenshot('png', {
+                    backgroundColor: '#fff'
+                  })
                     .then(() => {
                       toggleModal(true);
                     });
@@ -231,7 +233,7 @@ export default () => {
           </Form>
         </Col>
         <Col ref={resultRef} id="ct" xs={24} sm={24} md={12} className={styles.mgCol}>
-            {result}
+          {result}
         </Col>
       </Row>
       {image && (
@@ -242,9 +244,7 @@ export default () => {
           visible={showModal}
           footer={null}
         >
-          <Tooltip title="长按保存图片" defaultVisible={true}>
-            <img className={styles.modal} src={image} />
-          </Tooltip>
+          <img className={styles.modal} src={image} />
         </Modal>
       )}
     </>
