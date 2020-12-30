@@ -2,7 +2,7 @@ import { Button, Col, Form, Input, Modal, Row, Typography } from 'antd';
 import { InputProps } from 'antd/lib/input';
 import React, { useRef, useState } from 'react';
 import { useScreenshot } from 'use-screenshot-hook';
-
+import QR from './qr.png';
 import styles from './index.less';
 
 const TwoV = [
@@ -143,6 +143,7 @@ const gen = (sessons: ISeasons) => {
           </p>
         ))
       }
+      <img className={styles.qr} src={QR} alt="qrcode"/>
     </Paragraph >
   );
 };
