@@ -1,7 +1,8 @@
-import { Button, Col, Form, Input, Row } from 'antd';
+import { Button, Col, Form, Input, Modal, Row, Tooltip, Typography } from 'antd';
 import { InputProps } from 'antd/lib/input';
-import React, { useState } from 'react';
-import { Typography } from 'antd';
+import React, { useRef, useState } from 'react';
+import { useScreenshot } from 'use-screenshot-hook';
+
 import styles from './index.less';
 
 const TwoV = [
@@ -146,72 +147,106 @@ const gen = (sessons: ISeasons) => {
   );
 };
 
+
 export default () => {
+  const resultRef = useRef(null);
+  const { image, takeScreenshot, isLoading, clear } = useScreenshot({
+    ref: resultRef,
+  });
+  const [showModal, toggleModal] = useState(false);
   const [result, setResult] = useState(gen(DEFAULT_EVENTS));
 
   return (
-    <Row className={styles.mgRow}>
-      <Col xs={24} sm={24} md={12} className={styles.mgCol}>
-        <Form
-          initialValues={DEFAULT_EVENTS}
-          onFinish={(values: ISeasons) => {
-            setResult(gen(values));
-          }}
-          onFinishFailed={err => {
-            console.log(err);
-          }}
-        >
-          <Form.Item
-            {...Layout}
-            label="名字"
-            name="name"
-            rules={[{ required: true, message: '必填啊' }]}
+    <>
+      <Row className={styles.mgRow}>
+        <Col xs={24} sm={24} md={12} className={styles.mgCol}>
+          <Form
+            initialValues={DEFAULT_EVENTS}
+            onFinish={(values: ISeasons) => {
+              setResult(gen(values));
+            }}
+            onFinishFailed={err => {
+              console.log(err);
+            }}
           >
-            <Input {...InputProp} />
-          </Form.Item>
-          <Form.Item
-            {...Layout}
-            label="第一季度关键词"
-            name="s1"
-            rules={[{ required: true, message: '必填啊' }]}
-          >
-            <Input {...InputProp} />
-          </Form.Item>
-          <Form.Item
-            {...Layout}
-            label="第二季度关键词"
-            name="s2"
-            rules={[{ required: true, message: '必填啊' }]}
-          >
-            <Input {...InputProp} />
-          </Form.Item>
-          <Form.Item
-            {...Layout}
-            label="第三季度关键词"
-            name="s3"
-            rules={[{ required: true, message: '必填啊' }]}
-          >
-            <Input {...InputProp} />
-          </Form.Item>
-          <Form.Item
-            {...Layout}
-            label="第四季度关键词"
-            name="s4"
-            rules={[{ required: true, message: '必填啊' }]}
-          >
-            <Input {...InputProp} />
-          </Form.Item>
+            <Form.Item
+              {...Layout}
+              label="名字"
+              name="name"
+              rules={[{ required: true, message: '必填啊' }]}
+            >
+              <Input {...InputProp} />
+            </Form.Item>
+            <Form.Item
+              {...Layout}
+              label="第一季度关键词"
+              name="s1"
+              rules={[{ required: true, message: '必填啊' }]}
+            >
+              <Input {...InputProp} />
+            </Form.Item>
+            <Form.Item
+              {...Layout}
+              label="第二季度关键词"
+              name="s2"
+              rules={[{ required: true, message: '必填啊' }]}
+            >
+              <Input {...InputProp} />
+            </Form.Item>
+            <Form.Item
+              {...Layout}
+              label="第三季度关键词"
+              name="s3"
+              rules={[{ required: true, message: '必填啊' }]}
+            >
+              <Input {...InputProp} />
+            </Form.Item>
+            <Form.Item
+              {...Layout}
+              label="第四季度关键词"
+              name="s4"
+              rules={[{ required: true, message: '必填啊' }]}
+            >
+              <Input {...InputProp} />
+            </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              生成
+            <Form.Item wrapperCol={{ offset: 4, span: 8 }}>
+              <Button type="primary" htmlType="submit">
+                生成
             </Button>
-          </Form.Item>
-        </Form>
-      </Col>
-      <Col id="ct" xs={24} sm={24} md={12} className={styles.mgCol}>
-        {result}
-      </Col>
-    </Row>
+            </Form.Item>
+            <Form.Item wrapperCol={{ offset: 4, span: 8 }}>
+              <Button
+                type="ghost"
+                onClick={() => {
+                  takeScreenshot()
+                    .then(() => {
+                      toggleModal(true);
+                    });
+                }}
+              >
+                生成图片
+            </Button>
+            </Form.Item>
+          </Form>
+        </Col>
+        <Col ref={resultRef} id="ct" xs={24} sm={24} md={12} className={styles.mgCol}>
+            {result}
+        </Col>
+      </Row>
+      {image && (
+        <Modal
+          onCancel={() => {
+            toggleModal(false);
+          }}
+          visible={showModal}
+          footer={null}
+        >
+          <Tooltip title="长按保存图片" defaultVisible={true}>
+            <img className={styles.modal} src={image} />
+          </Tooltip>
+        </Modal>
+      )}
+    </>
   );
 };
