@@ -1,0 +1,32 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: build
+  image: node
+  commands:
+  - npm i
+  - npm run build
+  when:
+    event: pull_request
+
+- name: docker  
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: registry.cn-shenzhen.aliyuncs.com/lan_jane/this-year
+    registry: registry.cn-shenzhen.aliyuncs.com
+    tag: latest
+  when:
+    event: pull_request
+
+trigger:
+  event:
+    - pull_request
+  branch:
+    - master
