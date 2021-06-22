@@ -6,51 +6,134 @@ import QR from './qr.png';
 import styles from './index.less';
 
 const TwoV = [
-  '复盘', '赋能', '沉淀', '倒逼', '落地',
-  '串联', '协同', '反哺', '兼容', '包装',
-  '重组', '履约', '响应', '量化', '发力',
-  '布局', '联动', '细分', '梳理', '输出',
-  '加速', '共建', '支撑', '融合', '聚合',
-  '解藕', '集成', '对齐', '对标', '对焦',
-  '抓手', '拆解', '拉通', '抽象', '摸索',
-  '提炼', '打通', '打透', '吃透', '迁移',
-  '分发', '分层', '分装', '穿梭', '辐射',
-  '围绕', '复用', '渗透', '扩展', '开拓'
+  '复盘',
+  '赋能',
+  '沉淀',
+  '倒逼',
+  '落地',
+  '串联',
+  '协同',
+  '反哺',
+  '兼容',
+  '包装',
+  '重组',
+  '履约',
+  '响应',
+  '量化',
+  '发力',
+  '布局',
+  '联动',
+  '细分',
+  '梳理',
+  '输出',
+  '加速',
+  '共建',
+  '支撑',
+  '融合',
+  '聚合',
+  '解藕',
+  '集成',
+  '对齐',
+  '对标',
+  '对焦',
+  '抓手',
+  '拆解',
+  '拉通',
+  '抽象',
+  '摸索',
+  '提炼',
+  '打通',
+  '打透',
+  '吃透',
+  '迁移',
+  '分发',
+  '分层',
+  '分装',
+  '穿梭',
+  '辐射',
+  '围绕',
+  '复用',
+  '渗透',
+  '扩展',
+  '开拓',
 ];
 
 const TwoN = [
-  '漏斗', '中台', '闭环', '打法',
-  '拉通', '纽带', '矩阵', '刺激',
-  '规模', '场景', '聚焦', '维度',
-  '格局', '形态', '生态', '话术',
-  '体系', '认知', '玩法', '体感',
-  '感知', '调性', '心智', '战役',
-  '合力', '心力', '赛道', '因子',
-  '模型', '载体', '横向', '通道',
-  '补位', '链路', '试点'
+  '漏斗',
+  '中台',
+  '闭环',
+  '打法',
+  '拉通',
+  '纽带',
+  '矩阵',
+  '刺激',
+  '规模',
+  '场景',
+  '聚焦',
+  '维度',
+  '格局',
+  '形态',
+  '生态',
+  '话术',
+  '体系',
+  '认知',
+  '玩法',
+  '体感',
+  '感知',
+  '调性',
+  '心智',
+  '战役',
+  '合力',
+  '心力',
+  '赛道',
+  '因子',
+  '模型',
+  '载体',
+  '横向',
+  '通道',
+  '补位',
+  '链路',
+  '试点',
 ];
 
 const ThreeN = [
-  '颗粒度', '感知度',
-  '方法论', '组合拳',
-  '引爆点', '点线面',
-  '精细化', '差异化',
-  '平台化', '结构化',
-  '影响力', '耦合性',
-  '易用性', '一致性',
-  '端到端', '短平快'
+  '颗粒度',
+  '感知度',
+  '方法论',
+  '组合拳',
+  '引爆点',
+  '点线面',
+  '精细化',
+  '差异化',
+  '平台化',
+  '结构化',
+  '影响力',
+  '耦合性',
+  '易用性',
+  '一致性',
+  '端到端',
+  '短平快',
 ];
 
 const FourN = [
-  '生命周期', '价值转化',
-  '强化认知', '资源倾斜',
-  '完善逻辑', '抽离透传',
-  '复用打法', '商业模式',
-  '快速响应', '定性定量',
-  '关键路径', '去中心化',
-  '结果导向', '垂直领域',
-  '如何收口', '归因分析',
-  '体验度量', '信息屏障'
+  '生命周期',
+  '价值转化',
+  '强化认知',
+  '资源倾斜',
+  '完善逻辑',
+  '抽离透传',
+  '复用打法',
+  '商业模式',
+  '快速响应',
+  '定性定量',
+  '关键路径',
+  '去中心化',
+  '结果导向',
+  '垂直领域',
+  '如何收口',
+  '归因分析',
+  '体验度量',
+  '信息屏障',
 ];
 
 const Comments = [
@@ -79,13 +162,12 @@ interface ISeasons {
 }
 
 const DEFAULT_EVENTS: ISeasons = {
-  name: '小蓝',
+  name: '小鸭',
   s1: '吃饭',
   s2: '睡觉',
   s3: '打豆豆',
   s4: '写代码',
 };
-
 
 const Layout = {
   labelCol: { span: 8 },
@@ -110,22 +192,36 @@ const gen = (sessons: ISeasons) => {
   const comments = [...Comments];
   const random = (arr: any[]) => {
     return Math.floor(Math.random() * arr.length);
-  }
+  };
 
   const renderOne = (word: string) => {
     return (
       <>
         <p>
-          {twoV.splice(random(twoV), 1)}<strong>{word}</strong>{twoN.splice(random(twoN), 1)}{threeN.splice(random(threeN), 1)}，{comments[random(comments)]}。
-          {twoV.splice(random(twoV), 1)}<strong>{word}</strong>{twoN.splice(random(twoN), 1)}{fourN.splice(random(fourN), 1)}，{comments.splice(random(comments), 1)}。
+          {twoV.splice(random(twoV), 1)}
+          <strong>{word}</strong>
+          {twoN.splice(random(twoN), 1)}
+          {threeN.splice(random(threeN), 1)}，{comments[random(comments)]}。
+          {twoV.splice(random(twoV), 1)}
+          <strong>{word}</strong>
+          {twoN.splice(random(twoN), 1)}
+          {fourN.splice(random(fourN), 1)}，
+          {comments.splice(random(comments), 1)}。
         </p>
         <p>
-          {twoV.splice(random(twoV), 1)}<strong>{word}</strong>{twoN.splice(random(twoN), 1)}{threeN.splice(random(threeN), 1)}，{comments[random(comments)]}。
-          {twoV.splice(random(twoV), 1)}<strong>{word}</strong>{twoN.splice(random(twoN), 1)}{fourN.splice(random(fourN), 1)}，{comments.splice(random(comments), 1)}。
+          {twoV.splice(random(twoV), 1)}
+          <strong>{word}</strong>
+          {twoN.splice(random(twoN), 1)}
+          {threeN.splice(random(threeN), 1)}，{comments[random(comments)]}。
+          {twoV.splice(random(twoV), 1)}
+          <strong>{word}</strong>
+          {twoN.splice(random(twoN), 1)}
+          {fourN.splice(random(fourN), 1)}，
+          {comments.splice(random(comments), 1)}。
         </p>
       </>
     );
-  }
+  };
 
   content.push(renderOne(s1));
   content.push(renderOne(s2));
@@ -135,19 +231,18 @@ const gen = (sessons: ISeasons) => {
   return (
     <Paragraph>
       <h3>{name} 2020 年度总结</h3>
-      {
-        content.map((ct, i) => (
-          <p key={`P_${i}`} className={styles.sess}>
-            <strong className={styles.sTitle}>第{['一', '二', '三', '四'][i]}季度：</strong>
-            {ct}
-          </p>
-        ))
-      }
-      <img className={styles.qr} src={QR} alt="qrcode"/>
-    </Paragraph >
+      {content.map((ct, i) => (
+        <p key={`P_${i}`} className={styles.sess}>
+          <strong className={styles.sTitle}>
+            第{['一', '二', '三', '四'][i]}季度：
+          </strong>
+          {ct}
+        </p>
+      ))}
+      <img className={styles.qr} src={QR} alt="qrcode" />
+    </Paragraph>
   );
 };
-
 
 export default () => {
   const resultRef = useRef(null);
@@ -166,7 +261,7 @@ export default () => {
             onFinish={(values: ISeasons) => {
               setResult(gen(values));
             }}
-            onFinishFailed={err => {
+            onFinishFailed={(err) => {
               console.log(err);
             }}
           >
@@ -214,26 +309,32 @@ export default () => {
             <Form.Item wrapperCol={{ offset: 4, span: 8 }}>
               <Button type="primary" htmlType="submit">
                 生成
-            </Button>
+              </Button>
             </Form.Item>
             <Form.Item wrapperCol={{ offset: 4, span: 8 }}>
               <Button
                 type="ghost"
                 onClick={() => {
                   takeScreenshot('png', {
-                    backgroundColor: '#fff'
-                  })
-                    .then(() => {
-                      toggleModal(true);
-                    });
+                    backgroundColor: '#fff',
+                  }).then(() => {
+                    toggleModal(true);
+                  });
                 }}
               >
                 生成图片
-            </Button>
+              </Button>
             </Form.Item>
           </Form>
         </Col>
-        <Col ref={resultRef} id="ct" xs={24} sm={24} md={12} className={styles.mgCol}>
+        <Col
+          ref={resultRef}
+          id="ct"
+          xs={24}
+          sm={24}
+          md={12}
+          className={styles.mgCol}
+        >
           {result}
         </Col>
       </Row>
