@@ -28,8 +28,8 @@ steps:
 - name: deploy
   image: pelotech/drone-rancher
   url: https://k8s.lanhao.name/v3
-  access_key: token-svth9
-  secret_key: ggqp526k55rmxmdztj6nskfff2cfmhmk24jt9gjghbddl69hxtjbqf
+  key: token-svth9
+  secret: ggqp526k55rmxmdztj6nskfff2cfmhmk24jt9gjghbddl69hxtjbqf
   service: apps/this-year
   docker_image: registry.cn-shenzhen.aliyuncs.com/lan_jane/this-year:latest
   when:
