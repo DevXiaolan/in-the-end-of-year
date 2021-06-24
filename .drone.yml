@@ -27,6 +27,7 @@ steps:
 
 - name: deploy
   image: lan-kube
+  pull: if-not-exists
   commands:
     - kubectl set image deployments/this-year this-year=registry.cn-shenzhen.aliyuncs.com/lan_jane/this-year:latest -n apps
   when:
