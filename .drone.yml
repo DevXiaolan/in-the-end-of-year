@@ -26,11 +26,9 @@ steps:
     event: pull_request
 
 - name: deploy
-  image: pelotech/drone-rancher
-  url: https://k8s.lanhao.name/v3
-  secrets: [token-svth9, ggqp526k55rmxmdztj6nskfff2cfmhmk24jt9gjghbddl69hxtjbqf]
-  service: apps/this-year
-  docker_image: registry.cn-shenzhen.aliyuncs.com/lan_jane/this-year:latest
+  image: lan-kube
+  commands:
+    - kubectl set image deployments/this-year this-year=registry.cn-shenzhen.aliyuncs.com/lan_jane/this-year:latest -n apps
   when:
     event: pull_request
 
